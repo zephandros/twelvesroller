@@ -1,9 +1,9 @@
-const { Events, MessageFlags } = require('discord.js');
+const { Events } = require('discord.js');
 
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
-        if (!interaction.isChatInputCommand()) return;
+        if (!interaction.isChatInputCommand() || !interaction.isContextMenuCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
 
