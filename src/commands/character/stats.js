@@ -10,6 +10,7 @@ module.exports = {
             .setTitle('Your Character')
             .setDescription('Some description here')
             .addFields(
+                { name: '** **', value: '** **'},
                 { name: 'Bloodline', value: 'Your bloodline'},
                 { name: 'Origin', value: 'Your origin' },
                 { name: 'Occupation', value: 'Your current job',  inline: true },
