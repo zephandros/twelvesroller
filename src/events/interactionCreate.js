@@ -3,6 +3,7 @@ const { Events } = require('discord.js');
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
+        
         if (!interaction.isChatInputCommand() && !interaction.isContextMenuCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
@@ -11,6 +12,8 @@ module.exports = {
             console.error(`No command matching ${interaction.commandName} was found.`);
             return;
         }
+
+        console.log(`${interaction.createdAt.toISOString()} : ${interaction.member} has issued command "${interaction.commandName}".`);
 
         try {
             await command.execute(interaction);
