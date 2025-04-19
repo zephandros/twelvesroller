@@ -13,7 +13,7 @@ module.exports = {
             return;
         }
 
-        console.log(`${interaction.createdAt.toISOString()} : ${interaction.member} has issued command "${interaction.commandName}".`);
+        console.log(`${interaction.createdAt.toISOString()} : ${interaction.user.username} has issued command "${interaction.commandName}".`);
 
         try {
             await command.execute(interaction);
