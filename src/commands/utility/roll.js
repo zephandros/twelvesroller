@@ -42,10 +42,10 @@ function getResultMessage(first, second, score) {
     }
 
     if ((first + second) <= score) {
-        color = Color.RED;
+        color = Color.GREEN;
         message = "Sucess!";
     } else {
-        color = Color.GREEN;
+        color = Color.RED;
         message = "Failure!";
     }
 
