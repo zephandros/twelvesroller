@@ -43,10 +43,10 @@ function getResultMessage(first, second, score) {
     }
 
     if ((first + second) <= score) {
-        color = Color.GREEN;
+        color = Color.EMERALD;
         message = "Sucess!";
     } else {
-        color = Color.RED;
+        color = Color.ROSE;
         message = "Failure!";
     }
 
@@ -92,7 +92,6 @@ function makeTable(score, result) {
 // }
 
 async function rollCommand(score){
-    await delay(1000);
     const result = rollTwelves(score);
     return new EmbedBuilder()
     .setTitle(`${result.message}`)
