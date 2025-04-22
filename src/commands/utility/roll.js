@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, codeBlock } = require('discord.js');
+const { SlashCommandBuilder, codeBlock, EmbedBuilder } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,10 +11,15 @@ module.exports = {
         }),
     async execute(interaction) {
         const score = interaction.options.getInteger("total_score")
-        const result = await rollCommand(score);
+        //const result = await rollCommand(score);
+        
 
         await interaction.reply(`Rolling against score of ${score}...`);
-        await interaction.editReply(codeBlock(result));
+
+        const rollEmbed = rollCommand(score);
+
+
+        await interaction.editReply({embeds:[rollEmbed]});
     }
 };
 
@@ -69,7 +74,23 @@ function makeTable(score, result) {
     return table;
 }
 
-async function rollCommand(score) {
+// async function rollCommand(score) {
+//     const result = rollTwelves(score);
+//     return makeTable(score.toString(), result);
+// }
+
+async function rollCommand(score){
+    await delay(1000);
     const result = rollTwelves(score);
-    return makeTable(score.toString(), result);
+    return new EmbedBuilder()
+    .setTitle(`${result.message}`)
+    .setDescription(`[${result.first}] + [${result.second}] = ${result.total}`)
+    .addFields(
+        { name: 'Score', value: score,  inline: true },
+        { name: 'Difference', value: result.difference,  inline: true },
+    )
+}
+
+function delay(ms){
+    return new Promise(resolve => setTimeout(resolve, ms))
 }
