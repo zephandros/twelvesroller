@@ -33,8 +33,7 @@ module.exports = {
                     await interaction.reply({ content: 'There was an error while executing this command!' });
                 }
             }
-        }
-        if(interaction.isModalSubmit()){
+        }else if(interaction.isModalSubmit()){
             interaction.reply({content: `Modal submited`});
         }else {
             TWSLogger.printInteraction(interaction);
