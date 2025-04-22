@@ -1,5 +1,5 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType, MessageFlags, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
-/* La idea*/
+
 module.exports = {
     data: new ContextMenuCommandBuilder()
         .setName('Change Character Name')
