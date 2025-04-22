@@ -16,8 +16,7 @@ module.exports = {
 
         await interaction.reply(`Rolling against score of ${score}...`);
 
-        const rollEmbed = rollCommand(score);
-
+        const rollEmbed = await rollCommand(score);
 
         await interaction.editReply({embeds:[rollEmbed]});
     }
