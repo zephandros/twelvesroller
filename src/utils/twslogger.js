@@ -10,12 +10,12 @@ class TWSLogger {
     }
 
     static log(message){
-        const timestamp = new Date().now().toISOString();
+        const timestamp = new Date().toISOString();
         console.log(`${timestamp} : ${message}`)
     }
 
     static logError(message, error){
-        const timestamp = new Date().now().toISOString();
+        const timestamp = new Date().toISOString();
         console.error(`${timestamp} : ${message}, details:`);
         console.error(error);
     }
