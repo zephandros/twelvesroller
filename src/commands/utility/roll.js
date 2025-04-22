@@ -12,12 +12,13 @@ module.exports = {
             .setRequired(true);
         }),
     async execute(interaction) {
+        const username = interaction.user.displayName;
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
         
-        await interaction.reply(`Rolling against score of ${score}...`);
+        await interaction.reply(`${username} is rolling against score of ${score}...`);
 
-        const rollEmbed = await rollCommand(score);
+        const rollEmbed = await rollCommand(username, score);
 
         await interaction.editReply({embeds:[rollEmbed]});
     }
@@ -51,7 +52,7 @@ function getResultMessage(first, second, score) {
 
     if (first == second) {
         if(success){
-            color = Color.LIME
+            color = Color.YELLOW
         }else{
             color = Color.ORANGE
         }
@@ -91,8 +92,11 @@ function makeTable(score, result) {
 //     return makeTable(score.toString(), result);
 // }
 
-async function rollCommand(score){
+async function rollCommand(username, score){
     const result = rollTwelves(score);
+
+    TWSLogger.log(`${username} rolled [${result.first}] + [${result.second}] = ${result.total} <= ${score}, ${username} made a ${result.message} with a difference of ${result.difference}.`);
+
     return new EmbedBuilder()
     .setTitle(`${result.message}`)
     .setDescription(`[${result.first}] + [${result.second}] = ${result.total}`)
