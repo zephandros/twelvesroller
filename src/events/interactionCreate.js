@@ -4,7 +4,6 @@ const { TWSLogger } = require('../utils/twslogger.js')
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
-
         if(interaction.isChatInputCommand() || interaction.isContextMenuCommand()){
             const command = interaction.client.commands.get(interaction.commandName);
 
@@ -18,7 +17,7 @@ module.exports = {
             try {
                 await command.execute(interaction);
             } catch (error) {
-                console.error(error);
+                TWSLogger.logError('An error ocurred while trying to execute a command', error);
                 if (interaction.replied || interaction.deferred) {
                     await interaction.followUp({ content: 'There was an error while executing this command!' });
                 } else {
@@ -26,6 +25,7 @@ module.exports = {
                 }
             }
         }else if(interaction.isModalSubmit()){
+            TWSLogger.printInteraction(interaction);
             interaction.reply({content: `Modal submited`});
         }else {
             TWSLogger.printInteraction(interaction);
