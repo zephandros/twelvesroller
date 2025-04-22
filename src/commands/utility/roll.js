@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, codeBlock, EmbedBuilder } = require('discord.js');
+const { Color } = require('../../utils/color.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -28,25 +29,31 @@ function rollDice(sides) {
 
 function getResultMessage(first, second, score) {
     var message = "";
+    var color = Color.RED;
 
     if (first == 1 && second == 1) {
+        color = Color.EMERALD
         return "Critical success!";
     }
 
     if (first == 12 && second == 12) {
+        color = Color.ROSE
         return "Critical failure!";
     }
 
     if ((first + second) <= score) {
+        color = Color.RED;
         message = "Sucess!";
     } else {
+        color = Color.GREEN;
         message = "Failure!";
     }
 
-    if (first == 6 && second == 6) {
+    if (first == second && first != 12 && second != 12 && first != 1 && second != 1) {
+        color = Color.YELLOW;
         message += " Twelves!";
     }
-    return message;
+    return { message, color };
 }
 
 function rollTwelves(score) {
@@ -54,8 +61,10 @@ function rollTwelves(score) {
     const _second = rollDice(12);
     const _total = _first + _second;
     const _difference = Math.abs((score - _total));
+    const {message, color } = getResultMessage(_first, _second, score);
     return {
-        message: getResultMessage(_first, _second, score),
+        color: color,
+        message: message,
         first: _first.toString(),
         second: _second.toString(),
         total: _total.toString(),
@@ -84,6 +93,7 @@ async function rollCommand(score){
     return new EmbedBuilder()
     .setTitle(`${result.message}`)
     .setDescription(`[${result.first}] + [${result.second}] = ${result.total}`)
+    .setColor(result.color)
     .addFields(
         { name: 'Score', value: `${score}`,  inline: true },
         { name: 'Difference', value: `${result.difference}`,  inline: true },
