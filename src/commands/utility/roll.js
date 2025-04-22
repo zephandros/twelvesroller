@@ -63,7 +63,9 @@ function rollTwelves(score) {
     const _second = rollDice(12);
     const _total = _first + _second;
     const _difference = Math.abs((score - _total));
+    TWSLogger.log(`rolls: ${_first} + ${_second}`);
     const {message, color } = getResultMessage(_first, _second, score);
+    TWSLogger.log(`message: ${message}, color: ${color}`);
     return {
         color: color,
         message: message,
