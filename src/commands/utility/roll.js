@@ -8,14 +8,13 @@ module.exports = {
         .setDescription('Makes a roll against a score.')
         .addIntegerOption(option => {
             return option.setName('total_score')
-            .setDescription('12 + DIFFICULTY + STAT + SKILL + SITUATION')
+            .setDescription('STAT + SKILL + DIFFICULTY')
             .setRequired(true);
         }),
     async execute(interaction) {
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
         
-
         await interaction.reply(`Rolling against score of ${score}...`);
 
         const rollEmbed = await rollCommand(score);
@@ -31,30 +30,33 @@ function rollDice(sides) {
 function getResultMessage(first, second, score) {
     var message = "";
     var color = Color.RED;
+    var success = false;
 
     if (first == 1 && second == 1) {
-        color = Color.EMERALD
-        return "Critical success!";
+        return {message: "Critical success!", color: Color.EMERALD};
     }
 
     if (first == 12 && second == 12) {
-        color = Color.ROSE
-        return "Critical failure!";
+        return { message: "Critical failure!", color: Color.ROSE };
     }
 
     if ((first + second) <= score) {
-        color = Color.EMERALD;
+        color = Color.GREEN;
+        success = true;
         message = "Sucess!";
     } else {
-        color = Color.ROSE;
+        color = Color.RED;
         message = "Failure!";
     }
 
     if (first == second) {
-        color = Color.YELLOW;
+        if(success){
+            color = Color.LIME
+        }else{
+            color = Color.ORANGE
+        }
         message += " Twelves!";
     }
-    TWSLogger.log(`message: ${message}, color: ${color}`);
     return { message, color };
 }
 
@@ -63,9 +65,7 @@ function rollTwelves(score) {
     const _second = rollDice(12);
     const _total = _first + _second;
     const _difference = Math.abs((score - _total));
-    TWSLogger.log(`rolls: ${_first} + ${_second}`);
     const {message, color } = getResultMessage(_first, _second, score);
-    TWSLogger.log(`message: ${message}, color: ${color}`);
     return {
         color: color,
         message: message,
@@ -101,8 +101,4 @@ async function rollCommand(score){
         { name: 'Score', value: `${score}`,  inline: true },
         { name: 'Difference', value: `${result.difference}`,  inline: true },
     )
-}
-
-function delay(ms){
-    return new Promise(resolve => setTimeout(resolve, ms))
 }
