@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, codeBlock, EmbedBuilder } = require('discord.js');
 const { Color } = require('../../utils/color.js');
+const { TWSLogger } = require('../../utils/twslogger.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -49,10 +50,11 @@ function getResultMessage(first, second, score) {
         message = "Failure!";
     }
 
-    if (first == second && first != 12 && second != 12 && first != 1 && second != 1) {
+    if (first == second) {
         color = Color.YELLOW;
         message += " Twelves!";
     }
+    TWSLogger.log(`message: ${message}, color: ${color}`);
     return { message, color };
 }
 
