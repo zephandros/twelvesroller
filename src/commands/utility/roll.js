@@ -85,8 +85,8 @@ async function rollCommand(score){
     .setTitle(`${result.message}`)
     .setDescription(`[${result.first}] + [${result.second}] = ${result.total}`)
     .addFields(
-        { name: 'Score', value: score,  inline: true },
-        { name: 'Difference', value: result.difference,  inline: true },
+        { name: 'Score', value: `${score}`,  inline: true },
+        { name: 'Difference', value: `${result.difference}`,  inline: true },
     )
 }
 
