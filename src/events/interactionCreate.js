@@ -5,14 +5,6 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
 
-        if(interaction.isChatInputCommand()){
-            console.log("isChatInputCommand: true")
-        }
-
-        if(interaction.isContextMenuCommand()){
-            console.log("isContextMenuCommand: true")
-        }
-
         if(interaction.isChatInputCommand() || interaction.isContextMenuCommand()){
             const command = interaction.client.commands.get(interaction.commandName);
 
