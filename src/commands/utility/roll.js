@@ -77,15 +77,15 @@ function rollTwelves(score) {
     };
 }
 
-function makeTable(score, result) {
-    let table = "";
-    table += `+-------------------+----------+\n`;
-    table += `| ${result.message.padEnd(17, ' ')} | Score ${score.padStart(2, '0')} |\n`;
-    table += `+-------------------+----------+\n`;
-    table += `| [${result.first.padStart(2, '0')}] + [${result.second.padStart(2, '0')}] = ${result.total.padStart(2, '0')}  | Diff  ${result.difference.padStart(2, '0')} |\n`;
-    table += `+-------------------+----------+`;
-    return table;
-}
+// function makeTable(score, result) {
+//     let table = "";
+//     table += `+-------------------+----------+\n`;
+//     table += `| ${result.message.padEnd(17, ' ')} | Score ${score.padStart(2, '0')} |\n`;
+//     table += `+-------------------+----------+\n`;
+//     table += `| [${result.first.padStart(2, '0')}] + [${result.second.padStart(2, '0')}] = ${result.total.padStart(2, '0')}  | Diff  ${result.difference.padStart(2, '0')} |\n`;
+//     table += `+-------------------+----------+`;
+//     return table;
+// }
 
 // async function rollCommand(score) {
 //     const result = rollTwelves(score);
@@ -98,8 +98,8 @@ async function rollCommand(username, score){
     TWSLogger.log(`${username} rolled [${result.first}] + [${result.second}] = ${result.total} <= ${score}, ${username} made a ${result.message} with a difference of ${result.difference}.`);
 
     return new EmbedBuilder()
-    .setTitle(`${result.message}`)
-    .setDescription(`[${result.first}] + [${result.second}] = ${result.total}`)
+    .setTitle(`\# ${result.message}`)
+    .setDescription(`\# [${result.first}] + [${result.second}] = ${result.total}`)
     .setColor(result.color)
     .addFields(
         { name: 'Score', value: `${score}`,  inline: true },
