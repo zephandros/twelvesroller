@@ -6,16 +6,16 @@ module.exports = {
     name: Events.VoiceStateUpdate,
     async execute(oldState, newState) {
         if(oldState){
-            console.log(new Date().toJSONString());
             console.log(JSON.stringify({
+                date: new Date().toJSONString(),
                 channelId: oldState.channelId,
                 sessionId: oldState.sessionId,
                 member: oldState.member.displayName
             }));
         }
         if(newState){
-            console.log(new Date().toJSONString());
             console.log(JSON.stringify({
+                date: new Date().toJSONString(),
                 channelId: newState.channelId,
                 sessionId: newState.sessionId,
                 member: newState.member.displayName
