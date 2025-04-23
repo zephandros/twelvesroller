@@ -16,7 +16,7 @@ module.exports = {
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
         
-        await interaction.reply(`${username} is rolling against score of ${score}...`);
+        await interaction.reply(`\*\*${username} is rolling against score of ${score}...\*\*`);
 
         const rollEmbed = await rollCommand(username, score);
 
