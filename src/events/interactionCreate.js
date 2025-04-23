@@ -27,6 +27,9 @@ module.exports = {
         }else if(interaction.isModalSubmit()){
             TWSLogger.printInteraction(interaction);
             interaction.reply({content: `Modal submited`});
+        }else if(interaction.isButton()){
+            TWSLogger.printInteraction(interaction);
+            interaction.reply({content: `Button clicked!`});
         }else {
             TWSLogger.printInteraction(interaction);
             return;
