@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, roleMention, EmbedBuilder } = require('discord.js');
 const { Color } = require('../../utils/color.js');
 const { TWSLogger } = require('../../utils/twslogger.js');
+const { Config } = require('../../utils/config.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,9 +17,9 @@ module.exports = {
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
         
-        const role = roleMention('1333145038414413864')
+        const roleMention = roleMention(Config.playerRoleId)
 
-        await interaction.reply(`${role} \*\*${username} is rolling against score of ${score}...\*\*`);
+        await interaction.reply(`${roleMention} \*\*${username} is rolling against score of ${score}...\*\*`);
 
         const rollEmbed = await rollCommand(username, score);
 
