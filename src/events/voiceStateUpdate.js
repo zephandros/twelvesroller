@@ -4,6 +4,7 @@ const { Config } = require('../utils/config.js');
 
 module.exports = {
     name: Events.VoiceStateUpdate,
+    once: true,
     async execute(oldState, newState) {
         console.log("Triggering voiceStateUpdate...")
         // try{
