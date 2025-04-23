@@ -10,11 +10,14 @@ module.exports = {
         try{
             if(newState){
                 if(newState.channelId == gameRoomChannelId){
+                    TWSLogger.log(`Added "Playing now" role to ${oldState.member.displayName}.`)
                     newState.member.roles.add(playingNowRoleId);
                 }else{
+                    TWSLogger.log(`Removed "Playing now" role from ${oldState.member.displayName}.`)
                     newState.member.roles.remove(playingNowRoleId);
                 }
             } else{
+                TWSLogger.log(`Removed "Playing now" role from ${oldState.member.displayName}.`)
                 oldState.member.roles.remove(playingNowRoleId);
             }
         }catch(error){
