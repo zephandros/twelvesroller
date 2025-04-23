@@ -3,7 +3,7 @@ const { TWSLogger } = require('../utils/twslogger.js')
 
 module.exports = {
     name: Events.VoiceStateUpdate,
-    execute(oldState, newState) {
+    async execute(oldState, newState) {
         const gameRoomChannelId = "1364451129957814272";
         const playingNowRoleId = "1364450283169517692";
 
