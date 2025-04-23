@@ -4,9 +4,25 @@ const { Config } = require('../utils/config.js');
 
 module.exports = {
     name: Events.VoiceStateUpdate,
-    once: true,
     async execute(oldState, newState) {
-        console.log("Triggering voiceStateUpdate...")
+        if(oldState){
+            console.log(new Date().toJSONString());
+            console.log(JSON.stringify({
+                channelId: oldState.channelId,
+                sessionId: oldState.sessionId,
+                member: oldState.member.displayName
+            }));
+        }
+        if(newState){
+            console.log(new Date().toJSONString());
+            console.log(JSON.stringify({
+                channelId: newState.channelId,
+                sessionId: newState.sessionId,
+                member: newState.member.displayName
+            }));
+        }
+        return;
+        
         // try{
         //     if(newState){
         //         /* User entered a channel */
