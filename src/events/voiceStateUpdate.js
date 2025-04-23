@@ -7,7 +7,7 @@ module.exports = {
     async execute(oldState, newState) {
         if(oldState){
             console.log(JSON.stringify({
-                date: new Date().toJSONString(),
+                date: new Date().toISOString(),
                 channelId: oldState.channelId,
                 sessionId: oldState.sessionId,
                 member: oldState.member.displayName
@@ -15,7 +15,7 @@ module.exports = {
         }
         if(newState){
             console.log(JSON.stringify({
-                date: new Date().toJSONString(),
+                date: new Date().toISOString(),
                 channelId: newState.channelId,
                 sessionId: newState.sessionId,
                 member: newState.member.displayName
