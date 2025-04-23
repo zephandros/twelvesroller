@@ -99,10 +99,14 @@ async function rollCommand(username, score){
 
     return new EmbedBuilder()
     // .setTitle(`\# ${result.message}`)
-    .setDescription(`\# ${result.message} \n \#\# [${result.first}] + [${result.second}] = ${result.total} \n`)
+    .setDescription(`\# ${result.message}`)
     .setColor(result.color)
     .addFields(
-        { name: 'Score', value: `${score}`,  inline: true },
-        { name: 'Difference', value: `${result.difference}`,  inline: true },
+        { name: '1d12', value: `\# ${result.first} +`,  inline: true },
+        { name: '1d12', value: `\# ${result.second} =`,  inline: true },
+        { name: 'Result', value: `\# ${result.total}`,  inline: true },
+        { name: '** **', value: '** **'},
+        { name: 'Score', value: `\# ${score}`,  inline: true },
+        { name: 'Difference', value: `\# ${result.difference}`,  inline: true },
     )
 }
