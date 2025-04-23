@@ -8,10 +8,10 @@ module.exports = {
         try{
             if(newState){
                 if(newState.channelId == Config.gameRoomChannelId){
-                    TWSLogger.log(`Added "Playing now" role to ${oldState.member.displayName}.`)
+                    TWSLogger.log(`Added "Playing now" role to ${newState.member.displayName}.`)
                     newState.member.roles.add(Config.playingNowRoleId);
                 }else{
-                    TWSLogger.log(`Removed "Playing now" role from ${oldState.member.displayName}.`)
+                    TWSLogger.log(`Removed "Playing now" role from ${newState.member.displayName}.`)
                     newState.member.roles.remove(Config.playingNowRoleId);
                 }
             } else{
