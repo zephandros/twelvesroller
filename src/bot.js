@@ -41,8 +41,10 @@ for (const file of eventFiles) {
     const filePath = path.join(eventsPath, file);
     const event = require(filePath);
     if (event.once) {
+        console.log(`Initializing once event ${event.name}`);
         client.once(event.name, (...args) => event.execute(...args));
     } else {
+        console.log(`Initializing on event ${event.name}`);
         client.on(event.name, (...args) => event.execute(...args));
     }
 }
