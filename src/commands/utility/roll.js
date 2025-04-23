@@ -99,11 +99,12 @@ async function rollCommand(username, score){
     TWSLogger.log(`${username} rolled [${result.first}] + [${result.second}] = ${result.total} <= ${score}, ${username} made a ${result.message} with a difference of ${result.difference}.`);
 
     return new EmbedBuilder()
-    .setTitle(`\*The result must be equal or less than ${result.score}...\*`)
+    .setTitle(`\*The result must be equal or less than ${score}...\*`)
     .setDescription(`\# ${result.message} \n \#\# [ \*\*${result.first}\*\* ] + [ \*\*${result.second}\*\* ] = \*\*${result.total}\*\* \n`)
     .setColor(result.color)
     .addFields(
         { name: `\*Score\*`, value: `\*\*${score}\*\*`,  inline: true },
+        { name: `\*Result\*`, value: `\*\*${result.total}\*\*`,  inline: true },
         { name: `\*Difference\*`, value: `\*\*${result.difference}\*\*`,  inline: true },
     )
 }
