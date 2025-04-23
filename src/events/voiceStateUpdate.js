@@ -7,7 +7,7 @@ module.exports = {
     async execute(oldState, newState) {
         try{
             if(newState){
-                if(newState.channelId == gameRoomChannelId){
+                if(newState.channelId == Config.gameRoomChannelId){
                     TWSLogger.log(`Added "Playing now" role to ${oldState.member.displayName}.`)
                     newState.member.roles.add(Config.playingNowRoleId);
                 }else{
