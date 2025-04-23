@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, codeBlock, EmbedBuilder } = require('discord.js');
+const { SlashCommandBuilder, roleMention, EmbedBuilder } = require('discord.js');
 const { Color } = require('../../utils/color.js');
 const { TWSLogger } = require('../../utils/twslogger.js');
 
@@ -16,7 +16,9 @@ module.exports = {
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
         
-        await interaction.reply(`<@&1333145038414413864> \*\*${username} is rolling against score of ${score}...\*\*`);
+        const role = roleMention('1333145038414413864')
+
+        await interaction.reply(`${role} \*\*${username} is rolling against score of ${score}...\*\*`);
 
         const rollEmbed = await rollCommand(username, score);
 
