@@ -1,5 +1,5 @@
 const { Events } = require('discord.js');
-const { TWSLogger } = require('../utils/twslogger.js')
+const { TWSLogger } = require('../utils/twslogger.js');
 
 module.exports = {
     name: Events.InteractionCreate,
