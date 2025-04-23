@@ -44,10 +44,10 @@ function getResultMessage(first, second, score) {
     if ((first + second) <= score) {
         color = Color.GREEN;
         success = true;
-        message = "Sucess!";
+        message = "Sucess";
     } else {
         color = Color.RED;
-        message = "Failure!";
+        message = "Failure";
     }
 
     if (first == second) {
@@ -56,8 +56,9 @@ function getResultMessage(first, second, score) {
         }else{
             color = Color.ORANGE
         }
-        message += " Twelves!";
+        message += " with Luck";
     }
+    message += '!';
     return { message, color };
 }
 
@@ -99,14 +100,10 @@ async function rollCommand(username, score){
 
     return new EmbedBuilder()
     // .setTitle(`\# ${result.message}`)
-    .setDescription(`\# ${result.message}`)
+    .setDescription(`\# ${result.message} \n \#\# [ \*\*${result.first}\*\* ] + [ \*\*${result.second}\*\* ] = \*\*${result.total}\*\* \n`)
     .setColor(result.color)
     .addFields(
-        { name: '1d12', value: `# ${result.first} +`,  inline: true },
-        { name: '1d12', value: `# ${result.second} =`,  inline: true },
-        { name: 'Result', value: `# ${result.total}`,  inline: true },
-        { name: '** **', value: '** **'},
-        { name: 'Score', value: `# ${score}`,  inline: true },
-        { name: 'Difference', value: `# ${result.difference}`,  inline: true },
+        { name: `\*Score\*`, value: `\*\*${score}\*\*`,  inline: true },
+        { name: `\*Difference\*`, value: `\*\*${result.difference}\*\*`,  inline: true },
     )
 }
