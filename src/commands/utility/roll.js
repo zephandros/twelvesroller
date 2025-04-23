@@ -16,10 +16,10 @@ module.exports = {
         const username = interaction.user.displayName;
         const score = interaction.options.getInteger("total_score")
         //const result = await rollCommand(score);
-        
-        const roleMention = roleMention(Config.playerRoleId)
+        const roleId = Config.playerRoleId;
+        const role = roleMention(roleId);
 
-        await interaction.reply(`${roleMention} \*\*${username} is rolling against score of ${score}...\*\*`);
+        await interaction.reply(`${role} \*\*${username} is rolling against score of ${score}...\*\*`);
 
         const rollEmbed = await rollCommand(username, score);
 
