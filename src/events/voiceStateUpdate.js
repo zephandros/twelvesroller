@@ -5,6 +5,7 @@ const { Config } = require('../utils/config.js');
 module.exports = {
     name: Events.VoiceStateUpdate,
     async execute(oldState, newState) {
+        TWSLogger.log("Triggering event...");
         try{
             if(newState){
                 if(newState.channelId == Config.gameRoomChannelId){
