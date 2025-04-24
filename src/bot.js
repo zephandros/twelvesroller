@@ -15,6 +15,7 @@ const client = new Client({
 });
 
 client.commands = new Collection();
+client.cooldowns = new Collection();
 
 const foldersPath = path.join(__dirname, 'commands');
 const commandFolders = fs.readdirSync(foldersPath);
@@ -46,7 +47,27 @@ for (const file of eventFiles) {
         client.once(event.name, (...args) => event.execute(...args));
     } else {
         console.log(`Initializing on event ${event.name}`);
-        client.on(event.name, (...args) => event.execute(...args));
+        client.on(event.name, (...args) => {
+            if('cooldown' in event){
+                /* El evento tiene configurado un cooldown*/
+                const eventCooldown = client.cooldowns.get(event.name);
+                
+                if(eventCooldown){
+                    /* El evento ya fue lanzado antes*/
+                    if(Date.now() > eventCooldown){
+                        client.cooldowns.delete(event.name);
+                        event.execute(...args);
+                    }
+                }else{
+                    const timestamp = Date.now() + event.cooldown;
+                    client.cooldowns.set(event.name, timestamp)
+                    event.execute(...args)
+                }
+
+            }else{
+                event.execute(...args);
+            }
+        });
     }
 }
 
