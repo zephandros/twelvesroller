@@ -49,21 +49,14 @@ for (const file of eventFiles) {
         console.log(`Initializing on event ${event.name}`);
         client.on(event.name, (...args) => {
             if('cooldown' in event){
-                console.log(`${event.name} has a cooldown of ${event.cooldown}...`)
-                /* El evento tiene configurado un cooldown*/
                 const eventCooldown = client.cooldowns.get(event.name);
-                
                 if(eventCooldown){
-                    /* El evento ya fue lanzado antes*/
-                    console.log(`${event.name} is on the cooldownlist`);
                     const now = Date.now();
                     if(now > eventCooldown){
-                        console.log(`${event.name}'s cooldown has expired, removing event from the cooldown list.`)
                         client.cooldowns.delete(event.name);
                         event.execute(...args);
                     }
                 }else{
-                    console.log(`${event.name} is not the cooldownlist, adding event to the list... `);
                     const timestamp = Date.now() + event.cooldown;
                     client.cooldowns.set(event.name, timestamp)
                     event.execute(...args)
