@@ -61,7 +61,6 @@ for (const file of eventFiles) {
                     client.cooldowns.set(event.name, timestamp)
                     event.execute(...args)
                 }
-
             }else{
                 event.execute(...args);
             }
