@@ -4,6 +4,7 @@ const { Config } = require('../utils/config.js');
 
 module.exports = {
     name: Events.VoiceStateUpdate,
+    cooldown: 5,
     async execute(oldState, newState) {
         try{
             if(newState){
