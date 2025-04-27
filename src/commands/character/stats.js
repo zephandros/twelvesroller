@@ -53,7 +53,7 @@ module.exports = {
         */
 
         const characterStatEmbed = new EmbedBuilder()
-            .setTitle(``)
+            .setTitle(`${character.name}'s Character Sheet`)
             .setDescription(`\# ${character.name} \n \#\# STRESS \u25AE\u25AE\u25AE\u25AF\u25AF\u25AF\u25AF\u25AF\u25AF\u25AF\u25AF\u25AF \n \#\# HEALTH \u25C6\u25C7\u25C7`);
 
         await interaction.reply({embeds: [characterStatEmbed], flags: MessageFlags.Ephemeral });
